@@ -356,4 +356,36 @@
          For this time after the screen turns on, the Power Manager
          will not debounce light sensor readings -->
     <integer name="config_lightSensorWarmupTime">200</integer>
+
+    <!-- The bounding path of the cutout region of the main built-in display.
+         Must either be empty if there is no cutout region, or a string that is parsable by
+         {@link android.util.PathParser}.
+
+         The path is assumed to be specified in display coordinates with pixel units and in
+         the display's native orientation, with the origin of the coordinate system at the
+         center top of the display.
+
+         To facilitate writing device-independent emulation overlays, the marker `@dp` can be
+         appended after the path string to interpret coordinates in dp instead of px units.
+         Note that a physical cutout should be configured in pixels for the best results.
+         -->
+    <string translatable="false" name="config_mainBuiltInDisplayCutout">
+        M -185,0
+        H 183.34
+        c -9.77.44 -19.57,0.08 -29.28,1.24 -20.33,1.14 -41.18,5.17 -58.62,16.24
+        C 78.54,28.27,66,44.26,52,58.29
+        a 72.73,72.73,0,0,1 -38.29,19.58
+        c -16.53,2.51 -34,1 -49.09 -6.62 -9.85 -4.62 -17.88 -12.24 -25.21 -20.18 -10.46 -11.27 -20.9 -22.75 -33.53 -31.66 -11.49 -8 -24.9 -12.78 -38.53 -15.42
+        C -149.92,0.81,-167.51.39,-185,0
+        Z
+    </string>
+
+    <!-- Whether the display cutout region of the main built-in display should be forced to
+         black in software (to avoid aliasing or emulate a cutout that is not physically existent).
+     -->
+    <bool name="config_fillMainBuiltInDisplayCutout">true</bool>
+
+    <!-- Height of the status bar -->
+    <dimen name="status_bar_height_portrait">80px</dimen>
+    <dimen name="status_bar_height_landscape">80px</dimen>
 </resources>
