@@ -376,6 +376,22 @@
         Z
     </string>
 
+    <!-- Like config_mainBuiltInDisplayCutout, but this path is used to report the
+         one single bounding rect per device edge to the app via
+         {@link DisplayCutout#getBoundingRect}. Note that this path should try to match the visual
+         appearance of the cutout as much as possible, and may be smaller than
+         config_mainBuiltInDisplayCutout
+         -->
+    <string translatable="false" name="config_mainBuiltInDisplayCutoutRectApproximation">
+        M -90,-4.0375976e-6
+        H 90 V 21.226222
+        c -4.441221,3.290045 -8.613249,6.929813 -12.607549,10.746377 -4.756413,4.54361 -9.267233,9.334548 -13.762454,14.134151 -3.530444,3.769365 -7.051555,7.548063 -10.680263,11.223297 -1.341701,1.379963 -2.754065,2.689661 -4.209628,3.948426 -3.497378,3.018187 -7.282749,5.702514 -11.288649,8.003251 -7.15662,4.114956 -15.019622,6.995811 -23.140617,8.478972 -0.655983,0.12533 -1.3185,0.213594 -1.979684,0.306792 -2.9561921,0.407189 -5.9306505,0.684381 -8.9117754,0.820511 -1.2237025,0.05867 -2.44860502,0.08266 -3.67324085,0.1
+        H -1.4238308
+        c -3.0407234,-0.028 -6.0818468,-0.192795 -9.1044372,-0.532786 -5.412796,-0.604383 -10.771995,-1.743154 -15.935065,-3.484706 -2.938459,-0.990507 -5.811588,-2.176075 -8.587784,-3.558171 -0.479988,-0.24386 -0.971442,-0.464387 -1.45103,-0.708514 -4.358823,-2.172608 -8.391656,-4.954665 -12.135961,-8.058716 -4.196961,-3.479639 -8.044464,-7.356734 -11.744371,-11.354092
+        C -66.642321,44.548662 -72.861899,37.754179 -79.565462,31.445016 -82.908311,28.297501 -86.373958,25.276649 -90,22.458192
+        Z
+    </string>
+
     <!-- Whether the display cutout region of the main built-in display should be forced to
          black in software (to avoid aliasing or emulate a cutout that is not physically existent).
      -->
