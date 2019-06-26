@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2018 The LineageOS Project
+# Copyright (C) 2019 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,19 +14,7 @@
 # limitations under the License.
 #
 
-# Inherit from oneplus sdm845-common
--include device/oneplus/sdm845-common/BoardConfigCommon.mk
-
-DEVICE_PATH := device/oneplus/fajita
-
-# Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth/include
-
-# HIDL
-DEVICE_FRAMEWORK_MANIFEST_FILE += $(DEVICE_PATH)/framework_manifest.xml
-
-# Kernel
-TARGET_KERNEL_CONFIG := enchilada_defconfig
-
-# inherit from the proprietary version
--include vendor/oneplus/fajita/BoardConfigVendor.mk
+# Fingerprint
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.sys.fp.fod.location.X_Y=444,1966 \
+    persist.vendor.sys.fp.fod.size.width_height=190,190
