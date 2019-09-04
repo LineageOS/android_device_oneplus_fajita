@@ -8,7 +8,7 @@ It was released in November 2018.
 | CPU                     | Octa-core (4x2.8 GHz Kryo 385 Gold & 4x1.7 GHz Kryo 385 Silver)                                                                |
 | Chipset                 | Qualcomm SDM845 Snapdragon 845                                                                                                 |
 | GPU                     | Adreno 630                                                                                                                     |
-| Memory                  | 6/8 GB RAM                                                                                                                     |
+| Memory                  | 6/8/10 GB RAM                                                                                                                  |
 | Shipped Android Version | 9                                                                                                                              |
 | Storage                 | 64/128/256 GB                                                                                                                  |
 | Battery                 | Non-removable Li-Po 3700 mAh battery                                                                                           |
