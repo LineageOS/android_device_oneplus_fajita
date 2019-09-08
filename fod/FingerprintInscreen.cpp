@@ -22,6 +22,7 @@
 #include <fstream>
 
 #define FINGERPRINT_ACQUIRED_VENDOR 6
+#define FINGERPRINT_ERROR_VENDOR 8
 
 #define OP_ENABLE_FP_LONGPRESS 3
 #define OP_DISABLE_FP_LONGPRESS 4
@@ -138,8 +139,8 @@ Return<bool> FingerprintInscreen::handleAcquired(int32_t acquiredInfo, int32_t v
     return false;
 }
 
-Return<bool> FingerprintInscreen::handleError(int32_t, int32_t) {
-    return false;
+Return<bool> FingerprintInscreen::handleError(int32_t error, int32_t vendorCode) {
+    return error == FINGERPRINT_ERROR_VENDOR && vendorCode == 6;
 }
 
 Return<void> FingerprintInscreen::setLongPressEnabled(bool enabled) {
