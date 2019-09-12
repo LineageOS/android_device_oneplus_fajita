@@ -28,5 +28,8 @@ DEVICE_FRAMEWORK_MANIFEST_FILE += $(DEVICE_PATH)/framework_manifest.xml
 # Kernel
 TARGET_KERNEL_CONFIG := enchilada_defconfig
 
+# OTA
+TARGET_OTA_ASSERT_DEVICE := OnePlus6T
+
 # inherit from the proprietary version
 -include vendor/oneplus/fajita/BoardConfigVendor.mk
