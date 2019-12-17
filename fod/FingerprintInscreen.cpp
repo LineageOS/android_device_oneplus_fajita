@@ -20,6 +20,7 @@
 #include <android-base/logging.h>
 #include <hidl/HidlTransportSupport.h>
 #include <fstream>
+#include <vector>
 
 #define FINGERPRINT_ACQUIRED_VENDOR 6
 #define FINGERPRINT_ERROR_VENDOR 8
@@ -44,6 +45,30 @@ namespace fingerprint {
 namespace inscreen {
 namespace V1_0 {
 namespace implementation {
+
+const std::vector<std::pair<int, int>> BRIGHTNESS_ALPHA_ARRAY = {
+    {0, 255},
+    {1, 241},
+    {2, 236},
+    {4, 235},
+    {5, 234},
+    {6, 232},
+    {10, 228},
+    {20, 220},
+    {30, 212},
+    {45, 204},
+    {70, 190},
+    {100, 179},
+    {150, 166},
+    {227, 144},
+    {300, 131},
+    {400, 112},
+    {500, 96},
+    {600, 83},
+    {800, 60},
+    {1023, 34},
+    {2000, 131},
+};
 
 /*
  * Write value to path and close file.
@@ -84,7 +109,6 @@ Return<void> FingerprintInscreen::onFinishEnroll() {
 Return<void> FingerprintInscreen::onPress() {
     this->mVendorDisplayService->setMode(OP_DISPLAY_AOD_MODE, 2);
     this->mVendorDisplayService->setMode(OP_DISPLAY_SET_DIM, 1);
-    set(HBM_ENABLE_PATH, 1);
     this->mVendorDisplayService->setMode(OP_DISPLAY_NOTIFY_PRESS, 1);
 
     return Void();
@@ -93,7 +117,6 @@ Return<void> FingerprintInscreen::onPress() {
 Return<void> FingerprintInscreen::onRelease() {
     this->mVendorDisplayService->setMode(OP_DISPLAY_AOD_MODE, 0);
     this->mVendorDisplayService->setMode(OP_DISPLAY_SET_DIM, 0);
-    set(HBM_ENABLE_PATH, 0);
     this->mVendorDisplayService->setMode(OP_DISPLAY_NOTIFY_PRESS, 0);
 
     return Void();
@@ -106,7 +129,6 @@ Return<void> FingerprintInscreen::onShowFODView() {
 Return<void> FingerprintInscreen::onHideFODView() {
     this->mVendorDisplayService->setMode(OP_DISPLAY_AOD_MODE, 0);
     this->mVendorDisplayService->setMode(OP_DISPLAY_SET_DIM, 0);
-    set(HBM_ENABLE_PATH, 0);
     this->mVendorDisplayService->setMode(OP_DISPLAY_NOTIFY_PRESS, 0);
 
     return Void();
@@ -150,15 +172,57 @@ Return<void> FingerprintInscreen::setLongPressEnabled(bool enabled) {
     return Void();
 }
 
-Return<int32_t> FingerprintInscreen::getDimAmount(int32_t) {
-    int dimAmount = get(DIM_AMOUNT_PATH, 0);
+Return<int32_t> FingerprintInscreen::getDimAmount(int32_t cur_brightness) {
+    auto getDimAlpha = [](int32_t brightness) -> int {
+        auto interpolate = [](int x, int xa, int xb, int ya, int yb) -> int {
+            int sub{};
+            int bf = (((yb - ya) * 2) * (x - xa)) / (xb - xa);
+            int factor = bf / 2;
+            int plus = bf % 2;
+
+            if (!(xa - xb == 0 || yb - ya == 0)) {
+                sub = (((2 * (x - xa)) * (x - xb)) / (yb - ya)) / (xa - xb);
+            }
+
+            return ya + factor + plus + sub;
+        };
+
+        int idx{};
+        int xa{};
+        int xb{};
+        int ya{};
+        int yb{};
+
+        for (; idx < BRIGHTNESS_ALPHA_ARRAY.size(); idx++) {
+            const auto& [a, b] = BRIGHTNESS_ALPHA_ARRAY.at(idx);
+
+            if (a > brightness) {
+                break;
+            }
+
+            xa = a;
+            xb = b;
+        }
+
+        if (idx == 0) {
+            return BRIGHTNESS_ALPHA_ARRAY.front().second;
+        }
+
+        if (idx == BRIGHTNESS_ALPHA_ARRAY.size()) {
+            return BRIGHTNESS_ALPHA_ARRAY.back().second;
+        }
+
+        return interpolate(brightness, xa, xb, ya, yb) * 0.9f /* factor alpha by 0.9f */;
+    };
+
+    int dimAmount = getDimAlpha(cur_brightness * 4.011765f /* RE factor */);
     LOG(INFO) << "dimAmount = " << dimAmount;
 
     return dimAmount;
 }
 
 Return<bool> FingerprintInscreen::shouldBoostBrightness() {
-    return false;
+    return true;
 }
 
 Return<void> FingerprintInscreen::setCallback(const sp<IFingerprintInscreenCallback>& callback) {
