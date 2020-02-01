@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7dc5a853_dd292955",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2020-02-01T00:31:03Z",
+      "side": 1,
+      "message": "This /should/ be set in the device.mk",
+      "revId": "db4825079bead0881181632e0d1c0bbd2f0bf9c9",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
