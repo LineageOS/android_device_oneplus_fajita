@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "990e220e_2d3982a8",
+        "filename": "fod/FingerprintInscreen.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 17257
+      },
+      "writtenOn": "2020-02-03T19:56:51Z",
+      "side": 1,
+      "message": "In frameworks, this is named FOD view, and the green state is FOD circle.",
+      "range": {
+        "startLine": 104,
+        "startChar": 10,
+        "endLine": 104,
+        "endChar": 27
+      },
+      "revId": "1af53906bdcfb6c01d91c20762f871f952e619ba",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
