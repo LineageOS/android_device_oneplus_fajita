@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c77aebdb_27a69963",
+        "filename": "overlay-lineage/frameworks/base/packages/SystemUI/res/values-port/dimens.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 19665
+      },
+      "writtenOn": "2020-04-21T04:33:15Z",
+      "side": 1,
+      "message": "Would suggest changing this and the other value to 300px.",
+      "range": {
+        "startLine": 19,
+        "startChar": 45,
+        "endLine": 19,
+        "endChar": 50
+      },
+      "revId": "6f39d069696940d230727bebc5d3f98bced7273b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
