@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4d859df8_f049563c",
+        "filename": "overlay/frameworks/base/packages/SystemUI/res-keyguard/values/dimens.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 19665
+      },
+      "writtenOn": "2020-04-26T08:32:35Z",
+      "side": 1,
+      "message": "I\u0027m a bit curious about why we\u0027re overriding this value. Previously, this ended up resulting in shrinking the total height of the pin input buttons, which made it somewhat harder for me to input my pin.",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 60
+      },
+      "revId": "15199132bbd65b7890585f2b391cc463ad87e529",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": true
+    }
+  ]
+}
