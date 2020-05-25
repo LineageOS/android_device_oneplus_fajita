@@ -33,10 +33,6 @@
 #define OP_DISPLAY_NOTIFY_PRESS 9
 #define OP_DISPLAY_SET_DIM 10
 
-// This is not a typo by me. It's by OnePlus.
-#define HBM_ENABLE_PATH "/sys/class/drm/card0-DSI-1/op_friginer_print_hbm"
-#define DIM_AMOUNT_PATH "/sys/class/drm/card0-DSI-1/dim_alpha"
-
 namespace vendor {
 namespace lineage {
 namespace biometrics {
@@ -83,18 +79,12 @@ Return<void> FingerprintInscreen::onFinishEnroll() {
 }
 
 Return<void> FingerprintInscreen::onPress() {
-    this->mVendorDisplayService->setMode(OP_DISPLAY_AOD_MODE, 2);
-    this->mVendorDisplayService->setMode(OP_DISPLAY_SET_DIM, 1);
-    set(HBM_ENABLE_PATH, 1);
     this->mVendorDisplayService->setMode(OP_DISPLAY_NOTIFY_PRESS, 1);
 
     return Void();
 }
 
 Return<void> FingerprintInscreen::onRelease() {
-    this->mVendorDisplayService->setMode(OP_DISPLAY_AOD_MODE, 0);
-    this->mVendorDisplayService->setMode(OP_DISPLAY_SET_DIM, 0);
-    set(HBM_ENABLE_PATH, 0);
     this->mVendorDisplayService->setMode(OP_DISPLAY_NOTIFY_PRESS, 0);
 
     return Void();
@@ -102,15 +92,14 @@ Return<void> FingerprintInscreen::onRelease() {
 
 Return<void> FingerprintInscreen::onShowFODView() {
     this->mFodCircleVisible = true;
+    this->mVendorDisplayService->setMode(OP_DISPLAY_SET_DIM, 1);
 
     return Void();
 }
 
 Return<void> FingerprintInscreen::onHideFODView() {
     this->mFodCircleVisible = false;
-    this->mVendorDisplayService->setMode(OP_DISPLAY_AOD_MODE, 0);
     this->mVendorDisplayService->setMode(OP_DISPLAY_SET_DIM, 0);
-    set(HBM_ENABLE_PATH, 0);
     this->mVendorDisplayService->setMode(OP_DISPLAY_NOTIFY_PRESS, 0);
 
     return Void();
@@ -155,10 +144,7 @@ Return<void> FingerprintInscreen::setLongPressEnabled(bool enabled) {
 }
 
 Return<int32_t> FingerprintInscreen::getDimAmount(int32_t) {
-    int dimAmount = get(DIM_AMOUNT_PATH, 0);
-    LOG(INFO) << "dimAmount = " << dimAmount;
-
-    return dimAmount;
+    return 0;
 }
 
 Return<bool> FingerprintInscreen::shouldBoostBrightness() {
