@@ -32,3 +32,11 @@ cc_binary {
         "//device/oneplus/common:vendor.oneplus.hardware.display@1.0",
     ],
 }
+
+cc_library_static {
+    name: "libfod_extension.oneplus_fajita",
+    srcs: ["FodExtension.cpp"],
+    include_dirs: [
+        "frameworks/native/services/surfaceflinger/CompositionEngine/include"
+    ],
+}
