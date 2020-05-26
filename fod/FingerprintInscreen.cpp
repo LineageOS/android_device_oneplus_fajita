@@ -41,6 +41,30 @@ namespace inscreen {
 namespace V1_0 {
 namespace implementation {
 
+constexpr std::array<std::pair<uint32_t, uint32_t>, 21> BRIGHTNESS_ALPHA_LUT = {
+    std::make_pair(0, 0xff),
+    std::make_pair(1, 0xf1),
+    std::make_pair(2, 0xec),
+    std::make_pair(4, 0xeb),
+    std::make_pair(5, 0xea),
+    std::make_pair(6, 0xe8),
+    std::make_pair(10, 0xe4),
+    std::make_pair(20, 0xdc),
+    std::make_pair(30, 0xd4),
+    std::make_pair(45, 0xcc),
+    std::make_pair(70, 0xbe),
+    std::make_pair(100, 0xb3),
+    std::make_pair(150, 0xa6),
+    std::make_pair(227, 0x90),
+    std::make_pair(300, 0x83),
+    std::make_pair(400, 0x70),
+    std::make_pair(500, 0x60),
+    std::make_pair(600, 0x53),
+    std::make_pair(800, 0x3c),
+    std::make_pair(1023, 0x22),
+    std::make_pair(2000, 0x83),
+};
+
 /*
  * Write value to path and close file.
  */
@@ -57,6 +81,41 @@ static T get(const std::string& path, const T& def) {
 
     file >> result;
     return file.fail() ? def : result;
+}
+
+int interpolate(int x, int xa, int xb, int ya, int yb) {
+    int bf = 2 * (yb - ya) * (x - xa) / (xb - xa);
+    int factor = bf / 2;
+    int plus = bf % 2;
+    int sub = 0;
+
+    if ((xa - xb) && (yb - ya)) {
+        sub = 2 * (x - xa) * (x - xb) / (yb - ya) / (xa - xb);
+    }
+
+    return ya + factor + plus + sub;
+}
+
+int brightness_to_alpha(int brightness) {
+    int i = 0;
+
+    for (; i < BRIGHTNESS_ALPHA_LUT.size(); i++) {
+        if (BRIGHTNESS_ALPHA_LUT[i].first >= brightness) {
+            break;
+        }
+    }
+
+    if (i == 0)
+        return BRIGHTNESS_ALPHA_LUT.front().second;
+
+    if (i == BRIGHTNESS_ALPHA_LUT.size())
+        return BRIGHTNESS_ALPHA_LUT.back().second;
+
+    return interpolate(brightness,
+            BRIGHTNESS_ALPHA_LUT[i - 1].first,
+            BRIGHTNESS_ALPHA_LUT[i].first,
+            BRIGHTNESS_ALPHA_LUT[i - 1].second,
+            BRIGHTNESS_ALPHA_LUT[i].second);
 }
 
 FingerprintInscreen::FingerprintInscreen() {
@@ -143,8 +202,13 @@ Return<void> FingerprintInscreen::setLongPressEnabled(bool enabled) {
     return Void();
 }
 
-Return<int32_t> FingerprintInscreen::getDimAmount(int32_t) {
-    return 0;
+Return<int32_t> FingerprintInscreen::getDimAmount(int32_t brightness) {
+    int realBrightness = brightness * 1023 / 255;
+    int dimAmount = (brightness_to_alpha(realBrightness) * 70) / 100;
+
+    LOG(INFO) << "dimAmount = " << dimAmount;
+
+    return dimAmount;
 }
 
 Return<bool> FingerprintInscreen::shouldBoostBrightness() {
