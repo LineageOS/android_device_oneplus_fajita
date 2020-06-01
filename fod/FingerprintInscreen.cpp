@@ -21,7 +21,6 @@
 #include <hidl/HidlTransportSupport.h>
 #include <fstream>
 
-#define FINGERPRINT_ERROR_CANCELED 5
 #define FINGERPRINT_ACQUIRED_VENDOR 6
 #define FINGERPRINT_ERROR_VENDOR 8
 
@@ -33,9 +32,6 @@
 #define OP_DISPLAY_AOD_MODE 8
 #define OP_DISPLAY_NOTIFY_PRESS 9
 #define OP_DISPLAY_SET_DIM 10
-
-// This is not a typo by me. It's by OnePlus.
-#define HBM_ENABLE_PATH "/sys/class/drm/card0-DSI-1/op_friginer_print_hbm"
 
 namespace vendor {
 namespace lineage {
@@ -65,29 +61,25 @@ static T get(const std::string& path, const T& def) {
 
 FingerprintInscreen::FingerprintInscreen() {
     this->mFodCircleVisible = false;
-    this->mIsEnrolling = false;
     this->mVendorFpService = IVendorFingerprintExtensions::getService();
     this->mVendorDisplayService = IOneplusDisplay::getService();
 }
 
 Return<void> FingerprintInscreen::onStartEnroll() {
-    this->mIsEnrolling = true;
     this->mVendorFpService->updateStatus(OP_DISABLE_FP_LONGPRESS);
     this->mVendorFpService->updateStatus(OP_RESUME_FP_ENROLL);
-    set(HBM_ENABLE_PATH, 1);
 
     return Void();
 }
 
 Return<void> FingerprintInscreen::onFinishEnroll() {
-    this->mIsEnrolling = false;
     this->mVendorFpService->updateStatus(OP_FINISH_FP_ENROLL);
-    set(HBM_ENABLE_PATH, 0);
 
     return Void();
 }
 
 Return<void> FingerprintInscreen::onPress() {
+    this->mVendorDisplayService->setMode(OP_DISPLAY_SET_DIM, 1);
     this->mVendorDisplayService->setMode(OP_DISPLAY_NOTIFY_PRESS, 1);
 
     return Void();
@@ -144,13 +136,6 @@ Return<bool> FingerprintInscreen::handleAcquired(int32_t acquiredInfo, int32_t v
 
 Return<bool> FingerprintInscreen::handleError(int32_t error, int32_t vendorCode) {
     switch (error) {
-        case FINGERPRINT_ERROR_CANCELED:
-            // Turn HBM off after canceled fingerprint enrollment
-            if (this->mIsEnrolling && vendorCode == 0) {
-                this->mIsEnrolling = false;
-                set(HBM_ENABLE_PATH, 0);
-            }
-            return false;
         case FINGERPRINT_ERROR_VENDOR:
             // Ignore vendorCode 6
             return vendorCode == 6;
