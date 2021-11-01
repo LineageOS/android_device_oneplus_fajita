@@ -401,4 +401,11 @@
     <!-- Height of the status bar -->
     <dimen name="status_bar_height_portrait">80px</dimen>
     <dimen name="status_bar_height_landscape">80px</dimen>
+
+    <!-- The properties of a UDFPS sensor in pixels, in the order listed below: -->
+    <integer-array name="config_udfps_sensor_props" translatable="false" >
+        <item>531</item>  <!-- <item>sensorLocationX</item> -->
+        <item>2053</item> <!-- <item>sensorLocationY</item> -->
+        <item>87</item>   <!-- <item>sensorRadius</item> -->
+    </integer-array>
 </resources>
