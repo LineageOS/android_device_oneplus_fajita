@@ -48,7 +48,8 @@ PRODUCT_PACKAGES += \
 # Fingerprint
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.1-service.oneplus \
-    vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.oneplus
+    vendor.lineage.biometrics.fingerprint.inscreen@1.0-service.oneplus \
+    vendor.goodix.hardware.biometrics.fingerprint@2.1.vendor
 
 # Inherit from oneplus sdm845-common
 $(call inherit-product, device/oneplus/sdm845-common/common.mk)
