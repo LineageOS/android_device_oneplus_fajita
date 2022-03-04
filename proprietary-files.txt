@@ -1,0 +1,34 @@
+# All unpinned blobs below are extracted from OnePlus6TOxygen_34.J.62_OTA_0620_all_2111252336_339a2fa8335f21
+
+# Audio
+vendor/etc/firmware/tfa98xx.cnt
+
+# Camera
+vendor/lib/camera/oneplus6_vstab_db_0_1080p_video_30fps.config
+vendor/lib/camera/oneplus6_vstab_db_0_1080p_video_60fps.config
+vendor/lib/camera/oneplus6_vstab_db_0_4k_video_30fps.config
+vendor/lib/camera/oneplus6_vstab_db_0_720p_video_30fps.config
+vendor/lib/camera/oneplus6_vstab_db_1_1080p_video_30fps.config
+vendor/lib/camera/oneplus6_vstab_db_1_720p_video_30fps.config
+vendor/lib/hw/camera.qcom.so
+
+# Fingerprint
+vendor/lib64/hw/goodix.fod.sdm845.so
+vendor/lib64/fp_hal_extension.so
+vendor/lib64/libgf_ud_hal.so
+vendor/lib64/vendor.goodix.hardware.biometrics.fingerprint@2.1.so
+vendor/lib64/vendor.oneplus.fingerprint.extension@1.0.so
+
+# Keymaster
+vendor/bin/hw/android.hardware.keymaster@4.0-service-qti
+vendor/etc/init/android.hardware.keymaster@4.0-service-qti.rc
+vendor/lib64/libqtikeymaster4.so
+
+# Sensors
+vendor/etc/sensors/config/sdm845_ak991x_0.json
+vendor/etc/sensors/config/sdm845_bmi160_0.json
+vendor/etc/sensors/config/sdm845_lsm6ds3c_0.json
+vendor/etc/sensors/config/sdm845_stk36xx_0.json
+
+# Touchscreen
+vendor/etc/firmware/tp/fw_synaptics_18801.img
