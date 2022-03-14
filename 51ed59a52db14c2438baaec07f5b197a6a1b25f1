@@ -16,6 +16,41 @@
       "message": "Dim handles well but HBM isn\u0027t lighting up on finger down.",
       "revId": "51ed59a52db14c2438baaec07f5b197a6a1b25f1",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e0ad8c9_208afe52",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19667
+      },
+      "writtenOn": "2022-03-14T02:22:56Z",
+      "side": 1,
+      "message": "My apologies, hadn\u0027t synced latest sdm845 caf display. Resolved.",
+      "revId": "51ed59a52db14c2438baaec07f5b197a6a1b25f1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60639830_c37ef08b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19667
+      },
+      "writtenOn": "2022-03-14T02:22:56Z",
+      "side": 1,
+      "message": "My apologies, hadn\u0027t synced latest sdm845 caf display. Resolved.",
+      "parentUuid": "a0f5663e_fba39fa1",
+      "revId": "51ed59a52db14c2438baaec07f5b197a6a1b25f1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
