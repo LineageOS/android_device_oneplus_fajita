@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a470371_af24f356",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5911
+      },
+      "writtenOn": "2022-09-18T04:20:24Z",
+      "side": 1,
+      "message": "see https://review.lineageos.org/c/LineageOS/android_device_oneplus_sm8350-common/+/334393\n\nseems we need power profile AND sysprops: https://review.lineageos.org/c/LineageOS/android_device_oneplus_msm8998-common/+/338570/8",
+      "revId": "f18b7337d93f1af7644ae2e31bc1cb216dec9ea1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
