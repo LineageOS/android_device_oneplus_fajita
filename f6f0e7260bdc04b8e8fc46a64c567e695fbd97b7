@@ -51,6 +51,23 @@
       "message": "https://review.lineageos.org/c/LineageOS/android_device_fxtec_pro1/+/339523",
       "revId": "f6f0e7260bdc04b8e8fc46a64c567e695fbd97b7",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9089d98b_0d75f939",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 5911
+      },
+      "writtenOn": "2022-09-22T15:57:05Z",
+      "side": 1,
+      "message": "your choice tho, i\u0027ve got no say in that",
+      "revId": "f6f0e7260bdc04b8e8fc46a64c567e695fbd97b7",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
