@@ -30,14 +30,12 @@ PRODUCT_MANUFACTURER := OnePlus
 PRODUCT_BRAND := OnePlus
 PRODUCT_MODEL := ONEPLUS A6013
 
-PRODUCT_SYSTEM_NAME := OnePlus6T
-PRODUCT_SYSTEM_DEVICE := OnePlus6T
-
 PRODUCT_GMS_CLIENTID_BASE := android-oneplus
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    TARGET_DEVICE=OnePlus6T \
-    TARGET_PRODUCT=OnePlus6T \
-    PRIVATE_BUILD_DESC="OnePlus6T-user 9 PKQ1.180716.001 1812260627 release-keys"
-
-BUILD_FINGERPRINT := OnePlus/OnePlus6T/OnePlus6T:9/PKQ1.180716.001/1812260627:user/release-keys
+    DeviceName=OnePlus6T \
+    DeviceProduct=OnePlus6T \
+    SystemName=OnePlus6T \
+    SystemDevice=OnePlus6T \
+    BuildDesc="OnePlus6T-user 9 PKQ1.180716.001 1812260627 release-keys" \
+    BuildFingerprint=OnePlus/OnePlus6T/OnePlus6T:9/PKQ1.180716.001/1812260627:user/release-keys
