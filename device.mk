@@ -46,6 +46,8 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.biometrics.fingerprint@2.3-service.oneplus
 
+$(call soong_config_set,surfaceflinger,udfps_lib,//hardware/oneplus:libudfps_extension.oneplus)
+
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
