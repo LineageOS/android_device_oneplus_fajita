@@ -26,8 +26,14 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_p.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-lineage
+
+PRODUCT_PACKAGES += \
+    FrameworksResTarget \
+    SettingsProviderResTarget \
+    SettingsResTarget \
+    SystemUIResTarget \
+    WifiResTarget
 
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
@@ -51,10 +57,6 @@ $(call soong_config_set,surfaceflinger,udfps_lib,//hardware/oneplus:libudfps_ext
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
-
-# WiFi
-PRODUCT_PACKAGES += \
-    TargetWifiOverlay
 
 # Inherit from oneplus sdm845-common
 $(call inherit-product, device/oneplus/sdm845-common/common.mk)
